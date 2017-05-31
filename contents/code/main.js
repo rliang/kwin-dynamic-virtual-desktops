@@ -1,19 +1,8 @@
-function refresh() {
-  workspace.clientList().forEach(function(win) {
-    win.savedGeometry = win.geometry
+['clientAdded', 'clientRemoved', 'clientActivated', 'desktopPresenceChanged'].forEach(function(s) {
+  workspace[s].connect(function() {
+    var wins = workspace.clientList()
+    var geos = wins.map(function(w) { return w.geometry })
+    workspace.desktops = 1 + Math.max.apply(Math, wins.map(function(w) { return w.desktop }))
+    wins.forEach(function(w, i) { w.geometry = geos[i] })
   })
-  workspace.desktops = workspace.clientList().reduce(function(d, win) {
-    if (win.desktop >= 0)
-      d[win.desktop] = true
-    return d
-  }, [,]).length
-  workspace.clientList().forEach(function(win) {
-    if (win.savedGeometry)
-      win.geometry = win.savedGeometry
-  })
-}
-
-workspace.clientAdded.connect(refresh)
-workspace.clientRemoved.connect(refresh)
-workspace.clientActivated.connect(refresh)
-workspace.desktopPresenceChanged.connect(refresh)
+})
