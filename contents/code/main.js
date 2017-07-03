@@ -1,8 +1,49 @@
-['clientAdded', 'clientRemoved', 'clientActivated', 'desktopPresenceChanged'].forEach(function(s) {
-  workspace[s].connect(function() {
-    var wins = workspace.clientList()
-    var geos = wins.map(function(w) { return w.geometry })
-    workspace.desktops = 1 + Math.max.apply(Math, wins.map(function(w) { return w.desktop }))
-    wins.forEach(function(w, i) { w.geometry = geos[i] })
-  })
-})
+var LOCK = false;
+
+function desktops() {
+  return workspace.clientList().reduce(function(n, w) { return Math.max(n, w.desktop); }, -1);
+}
+
+function winsInDesktop(d) {
+  return workspace.clientList().filter(function(w) { return w.desktop == d; });
+}
+
+function winsFromDesktop(d) {
+  return workspace.clientList().filter(function(w) { return w.desktop > d; });
+}
+
+function pushWinsFromDesktop(n) {
+  workspace.desktops++;
+  winsFromDesktop(n).forEach(function(w) { w.desktop += 1; });
+  if (n < workspace.currentDesktop)
+    workspace.currentDesktop++;
+}
+
+function pullWinsFromDesktop(n) {
+  winsFromDesktop(n).forEach(function(w) { w.desktop -= 1; });
+  if (n < workspace.currentDesktop)
+    workspace.currentDesktop--;
+}
+
+function updateDesktops() {
+  if (winsInDesktop(1).length > 0)
+    pushWinsFromDesktop(0);
+  for (var i = 2; i <= workspace.desktops; i++)
+    if (i != workspace.currentDesktop && winsInDesktop(i).length == 0)
+      pullWinsFromDesktop(i);
+  workspace.desktops = desktops() + 1;
+}
+
+function update() {
+  if (LOCK)
+    return;
+  LOCK = true;
+  updateDesktops();
+  LOCK = false;
+}
+
+workspace.clientAdded.connect(update);
+workspace.clientRemoved.connect(update);
+workspace.clientActivated.connect(update);
+workspace.currentDesktopChanged.connect(update);
+workspace.desktopPresenceChanged.connect(update);
