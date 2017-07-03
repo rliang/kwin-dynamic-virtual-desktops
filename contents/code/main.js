@@ -38,7 +38,10 @@ function update() {
   if (LOCK)
     return;
   LOCK = true;
+  var wins = workspace.clientList();
+  var geos = wins.map(function(w) { return w.geometry; })
   updateDesktops();
+  wins.forEach(function(w, i) { w.geometry = geos[i]; })
   LOCK = false;
 }
 
