@@ -10,10 +10,13 @@ X-Plasma-MainScript=code/main.js
 X-KDE-PluginInfo-Author=Ricardo Liang
 X-KDE-PluginInfo-Email=ricardoliang@gmail.com
 X-KDE-PluginInfo-Name=dynamicVirtualDesktops
-X-KDE-PluginInfo-Version=0.0.1
+X-KDE-PluginInfo-Version=0.0.2
 X-KDE-PluginInfo-EnabledByDefault=true
 
 X-KDE-PluginInfo-Depends=
 X-KDE-PluginInfo-License=GPL
-X-KDE-ServiceTypes=KWin/Script
+X-KDE-ServiceTypes=KWin/Script,KCModule
+
+X-KDE-Library=kwin/effects/configs/kcm_kwin4_genericscripted
 X-KDE-PluginKeyword=dynamicVirtualDesktops
+X-KDE-ParentComponents=dynamicVirtualDesktops

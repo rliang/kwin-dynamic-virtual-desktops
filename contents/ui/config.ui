@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KWin::DynamicVirtualDesktopsConfigForm</class>
+ <widget class="QWidget" name="KWin::DynamicVirtualDesktopsConfigForm">
+  <property name="windowTitle">
+   <string>Dynamic Virtual Desktops</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="minimumDesktopsLabel">
+     <property name="text">
+      <string>Minimum Desktops</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="kcfg_minimumDesktops"/>
+   </item>
+  </layout>
+ </widget>
+</ui>
