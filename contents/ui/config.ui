@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>KWin::DynamicVirtualDesktopsConfigForm</class>
- <widget class="QWidget" name="KWin::DynamicVirtualDesktopsConfigForm">
-  <property name="windowTitle">
-   <string>Dynamic Virtual Desktops</string>
-  </property>
-  <layout class="QFormLayout" name="formLayout">
+ <widget class="QWidget">
+  <layout class="QFormLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="minimumDesktopsLabel">
+    <widget class="QLabel">
      <property name="text">
       <string>Minimum Desktops</string>
      </property>
