@@ -1,11 +1,11 @@
 var LOCK = false;
 
 function desktops() {
-  return workspace.clientList().reduce(function(n, w) { return Math.max(n, w.desktop); }, -1);
+  return workspace.clientList().reduce(function(n, w) { return Math.max(n, w.skipPager ? -1 : w.desktop); }, -1);
 }
 
 function winsInDesktop(d) {
-  return workspace.clientList().filter(function(w) { return w.desktop == d; });
+  return workspace.clientList().filter(function(w) { return w.desktop == d && !w.skipPager; });
 }
 
 function winsFromDesktop(d) {
