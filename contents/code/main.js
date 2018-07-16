@@ -50,3 +50,5 @@ workspace.clientRemoved.connect(update);
 workspace.clientActivated.connect(update);
 workspace.currentDesktopChanged.connect(update);
 workspace.desktopPresenceChanged.connect(update);
+
+options.configChanged.connect(update);
