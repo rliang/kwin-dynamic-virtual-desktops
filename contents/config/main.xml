@@ -9,5 +9,13 @@
       <label>The minimum amount of desktops</label>
       <default>1</default>
     </entry>
+    <entry name="showEmptyDesktopInFront" type="bool">
+      <label>Always show an empty desktop in front</label>
+      <default>true</default>
+    </entry>
+    <entry name="showEmptyDesktopAtBack" type="bool">
+      <label>Always show an empty desktop at the back</label>
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>
