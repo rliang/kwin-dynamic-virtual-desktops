@@ -1,6 +1,8 @@
 [Desktop Entry]
 Name=Dynamic Virtual Desktops
+Name[zh_CN]=动态虚拟桌面
 Comment=Automatically adds/removes virtual desktops.
+Comment[zh_CN]=自动增加/删除虚拟桌面。
 Icon=preferences-system-windows-script-test
 Type=Service
 
